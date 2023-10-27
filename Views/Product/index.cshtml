@@ -1,0 +1,42 @@
+@model IEnumerable<Product>
+
+    @{
+    ViewData["Title"] = "Lista de Produtos";
+    }
+
+    <h1>Lista de Produtos</h1>
+
+    <div class="p-3 w-100 d-flex flex-row-reverse">
+        <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Adicionar Produto</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Corridor)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Shelf)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Batch)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Validity)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Category)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Quantity)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Value)</th>
+                <th scope="col">Mais Detalhes </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product product in Model)
+            {
+            <tr>
+                <th scope="row">@product.Name</th>
+                <td>@product.Corridor</td>
+                <td>@product.Shelf</td>
+                <td>@product.Batch</td>
+                <td>@product.Validity</td>
+                <td>@product.Category</td>
+                <td>@product.Quantity</td>
+                <td>R$ @product.Value.ToString("F2")</td>
+                <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product" asp-action="Show">Ver</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
