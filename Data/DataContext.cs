@@ -1,6 +1,7 @@
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Interdisciplinar2023.Models;
+using Interdisciplinar2023.Data.Enum;
 
 namespace Interdisciplinar2023.Data;
 
@@ -42,7 +43,7 @@ public class DataContext : DbContext
             Shelf = "4",
             Batch = "L52231T",
             Validity = DateTime.Parse(input, info, DateTimeStyles.None).ToUniversalTime(),
-            Category = "Perecíveis",
+            Category = ProductCategory.Pereciveis,
             Description = "Arroz Branco Tipo 1",
             Quantity = 20,
             ProviderId = provider.Id,

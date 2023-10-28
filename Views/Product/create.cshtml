@@ -1,0 +1,63 @@
+@using Interdisciplinar2023.ViewModels;
+@using Interdisciplinar2023.Data.Enum;
+@model CreateProductViewModel
+@{
+}
+<form method="Post" asp-action="Create" asp-controller="Product">
+    <div class="form-group">
+        <label asp-for="Name">@Html.DisplayNameFor(m => m.Name)</label>
+        <input asp-for="Name" class="form-control" aria-describedby="nameHelp" placeholder="Nome do Produto">
+        <span asp-validation-for='Name' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Value">@Html.DisplayNameFor(m => m.Value)</label>
+        <input asp-for="Value" class="form-control" placeholder="Valor">
+        <span asp-validation-for='Value' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Corridor">@Html.DisplayNameFor(m => m.Corridor)</label>
+        <input asp-for="Corridor" class="form-control" placeholder="Corredor">
+        <span asp-validation-for='Corridor' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Shelf">@Html.DisplayNameFor(m => m.Shelf)</label>
+        <input asp-for="Shelf" class="form-control" placeholder="Prateleira">
+        <span asp-validation-for='Shelf' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Batch">@Html.DisplayNameFor(m => m.Batch)</label>
+        <input asp-for="Batch" class="form-control" placeholder="Lote">
+        <span asp-validation-for='Batch' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Validity">@Html.DisplayNameFor(m => m.Validity)</label>
+        <input asp-for="Validity" class="form-control" placeholder="Validade">
+        <span asp-validation-for='Validity' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Category">@Html.DisplayNameFor(m => m.Category)</label>
+        <select asp-for="Category" asp-items="@Html.GetEnumSelectList<ProductCategory>()" class="form-select">
+            <option> -- Select -- </option>
+        </select>
+        <span asp-validation-for='Category' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Description">@Html.DisplayNameFor(m => m.Description)</label>
+        <input asp-for="Description" class="form-control" placeholder="Descrição">
+        <span asp-validation-for='Description' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Quantity">@Html.DisplayNameFor(m => m.Quantity)</label>
+        <input asp-for="Quantity" class="form-control" placeholder="Quantidade">
+        <span asp-validation-for='Quantity' class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Provider">@Html.DisplayNameFor(m => m.Provider)</label>
+        <select asp-for="ProviderId" asp-items='new SelectList(Model.ProviderList, "Id", "CorporateName")'
+            class="form-select">
+            <option> -- Select -- </option>
+        </select>
+        <span asp-validation-for='ProviderId' class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>

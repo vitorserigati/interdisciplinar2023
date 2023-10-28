@@ -3,6 +3,7 @@ using System;
 using Interdisciplinar2023.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Interdisciplinar2023.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231028085227_ProductEnum")]
+    partial class ProductEnum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,17 +81,17 @@ namespace Interdisciplinar2023.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a96ae17a-d2e4-40b4-97dc-bdb1eb2c6d9b"),
+                            Id = new Guid("b46c892e-a0c8-493b-aa8c-937d6af83924"),
                             Batch = "L52231T",
                             Category = 0,
                             Corridor = "B",
-                            CreatedAt = new DateTime(2023, 10, 28, 13, 22, 21, 92, DateTimeKind.Utc).AddTicks(5483),
+                            CreatedAt = new DateTime(2023, 10, 28, 8, 52, 27, 551, DateTimeKind.Utc).AddTicks(7679),
                             Description = "Arroz Branco Tipo 1",
                             Name = "Arroz Branco Camil",
-                            ProviderId = new Guid("0234fd0e-189e-4bb4-a652-e605b563bec8"),
+                            ProviderId = new Guid("33361a5e-0baf-41ba-89f5-f6e0568092f4"),
                             Quantity = 20,
                             Shelf = "4",
-                            UpdatedAt = new DateTime(2023, 10, 28, 13, 22, 21, 92, DateTimeKind.Utc).AddTicks(5487),
+                            UpdatedAt = new DateTime(2023, 10, 28, 8, 52, 27, 551, DateTimeKind.Utc).AddTicks(7683),
                             Validity = new DateTime(2024, 3, 25, 11, 50, 56, 0, DateTimeKind.Utc),
                             Value = 20.0m
                         });
@@ -153,11 +156,11 @@ namespace Interdisciplinar2023.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0234fd0e-189e-4bb4-a652-e605b563bec8"),
+                            Id = new Guid("33361a5e-0baf-41ba-89f5-f6e0568092f4"),
                             Celphone = "11933333333",
                             City = "Barra Bonita",
                             CorporateName = "Camil Alimentos LTDA",
-                            CreatedAt = new DateTime(2023, 10, 28, 13, 22, 21, 92, DateTimeKind.Utc).AddTicks(4722),
+                            CreatedAt = new DateTime(2023, 10, 28, 8, 52, 27, 551, DateTimeKind.Utc).AddTicks(6974),
                             Document = "64.904.295/0001-03",
                             Email = "alimentos@camil.com.br",
                             Neighborhood = "Area Rural",
@@ -165,7 +168,7 @@ namespace Interdisciplinar2023.Data.Migrations
                             PostalCode = "1234567788",
                             State = "São Paulo",
                             Street = "Fazenda Pau D'Alho, s/n",
-                            UpdatedAt = new DateTime(2023, 10, 28, 13, 22, 21, 92, DateTimeKind.Utc).AddTicks(4743)
+                            UpdatedAt = new DateTime(2023, 10, 28, 8, 52, 27, 551, DateTimeKind.Utc).AddTicks(6991)
                         });
                 });
 

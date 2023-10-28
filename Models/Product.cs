@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Interdisciplinar2023.Data.Enum;
 
 namespace Interdisciplinar2023.Models
 {
@@ -30,11 +31,11 @@ namespace Interdisciplinar2023.Models
 
         [DisplayName("Validade")]
         [Required(ErrorMessage = "Campo Obrigatório")]
-        public DateTime Validity { get; set; }
+        public DateTime Validity { get; set; } = DateTime.Now;
 
         [DisplayName("Categoria")]
         [Required(ErrorMessage = "Campo Obrigatório")]
-        public string? Category { get; set; }
+        public ProductCategory Category { get; set; }
 
         [DisplayName("Descrição")]
         [Required(ErrorMessage = "Campo Obrigatório")]
@@ -44,14 +45,14 @@ namespace Interdisciplinar2023.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int Quantity { get; set; }
 
-        [DisplayName("Fornecedor")]
-        [Required(ErrorMessage = "Campo Obrigatório")]
         public Provider? Provider { get; set; }
 
+        [DisplayName("Fornecedor")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public Guid ProviderId { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 }

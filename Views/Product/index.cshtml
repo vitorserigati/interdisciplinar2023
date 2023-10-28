@@ -35,7 +35,8 @@
                 <td>@product.Category</td>
                 <td>@product.Quantity</td>
                 <td>R$ @product.Value.ToString("F2")</td>
-                <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product" asp-action="Show">Ver</a></td>
+                <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
+                        asp-action="Details">Ver</a></td>
             </tr>
             }
         </tbody>

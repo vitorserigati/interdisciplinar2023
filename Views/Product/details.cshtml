@@ -21,14 +21,14 @@ ViewData["Title"] = "Detalhes do " + @Model.Name;
     <div class="mx-3">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">@Model.Provider.CorporateName</li>
-            <li class="list-group-item">R$ @Model.Value.ToString("F2")</li>
-            <li class="list-group-item">@Model.Corridor</li>
-            <li class="list-group-item">@Model.Shelf</li>
-            <li class="list-group-item">@Model.Batch</li>
-            <li class="list-group-item">@Model.Validity</li>
+            <li class="list-group-item">@Model.Provider.Street</li>
+            <li class="list-group-item">@Model.Provider.Neighborhood</li>
+            <li class="list-group-item">@Model.Provider.City</li>
+            <li class="list-group-item">@Model.Provider.State</li>
+            <li class="list-group-item">@Model.Provider.PostalCode</li>
             <li class="list-group-item">@Model.Description</li>
-            <li class="list-group-item">@Model.Category</li>
-            <li class="list-group-item">@Model.Provider.CorporateName</li>
+            <li class="list-group-item">@Model.Provider.Email</li>
+            <li class="list-group-item">@Model.Provider.Celphone</li>
         </ul>
     </div>
 </div>
