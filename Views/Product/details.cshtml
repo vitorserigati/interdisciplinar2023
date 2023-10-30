@@ -3,9 +3,9 @@
 ViewData["Title"] = "Detalhes do " + @Model.Name;
 }
 
-<h1>Detalhes do @Model.Name</h1>
-<div class="w-50 d-flex flex-row">
-    <div class="mx-3">
+<div class="d-flex flex-row container align-items-center justify-content-center">
+    <div class="w-50">
+        <h1>Detalhes do @Model.Name</h1>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">@Model.Name</li>
             <li class="list-group-item">R$ @Model.Value.ToString("F2")</li>
@@ -16,19 +16,13 @@ ViewData["Title"] = "Detalhes do " + @Model.Name;
             <li class="list-group-item">@Model.Description</li>
             <li class="list-group-item">@Model.Category</li>
             <li class="list-group-item">@Model.Provider.CorporateName</li>
-        </ul>
-    </div>
-    <div class="mx-3">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">@Model.Provider.CorporateName</li>
-            <li class="list-group-item">@Model.Provider.Street</li>
-            <li class="list-group-item">@Model.Provider.Neighborhood</li>
-            <li class="list-group-item">@Model.Provider.City</li>
-            <li class="list-group-item">@Model.Provider.State</li>
-            <li class="list-group-item">@Model.Provider.PostalCode</li>
-            <li class="list-group-item">@Model.Description</li>
-            <li class="list-group-item">@Model.Provider.Email</li>
-            <li class="list-group-item">@Model.Provider.Celphone</li>
+            <div class="d-flex flex-row justify-content-around align-items-center my-3">
+                <a asp-action="Edit" asp-controller="Product" asp-route-id="@Model.Id" class="btn btn-primary">
+                    Editar
+                </a>
+                <a asp-action="Delete" asp-controller="Product" asp-route-id="@Model.Id" class="btn btn-danger">
+                    Deletar </a>
+            </div>
         </ul>
     </div>
 </div>

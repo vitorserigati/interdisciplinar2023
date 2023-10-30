@@ -39,12 +39,11 @@ public class ProviderRepository : IProviderRepository
 
     public async Task<IEnumerable<Provider?>> GetAllProviders()
     {
-        return await _context.Providers.ToListAsync();
+        return await _context.Providers.Include(p => p.Products).ToListAsync();
     }
 
     public async Task<Provider?> GetProviderAsync(Guid id)
     {
-        return await _context.Providers.FirstOrDefaultAsync(i => i.Id == id);
+        return await _context.Providers.Include(p => p.Products).FirstOrDefaultAsync(i => i.Id == id);
     }
-
 }

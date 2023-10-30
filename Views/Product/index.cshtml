@@ -1,43 +1,62 @@
-@model IEnumerable<Product>
+@using Interdisciplinar2023.ViewModels;
+@using Interdisciplinar2023.Data.Enum;
+@model IndexProductViewModel
+@{
+ViewData["Title"] = "Lista de Produtos";
+}
 
-    @{
-    ViewData["Title"] = "Lista de Produtos";
-    }
+<h1>Lista de Produtos</h1>
 
-    <h1>Lista de Produtos</h1>
-
-    <div class="p-3 w-100 d-flex flex-row-reverse">
+<div class="p-3 w-100 d-flex flex-row justify-content-between align-items-center">
+    <form class="d-flex flex-row align-items-center" asp-controller="Product" asp-action="Index" method="post">
+        <div class="form-group">
+            <label asp-for="SelectedCategory"></label>
+            <select asp-for="SelectedCategory" asp-items="@Html.GetEnumSelectList<ProductCategory>()">
+            </select>
+        </div>
+        <div class="form-group mx-3">
+            <label asp-for="SelectedProviderId"></label>
+            <select asp-for="SelectedProviderId" asp-items='new SelectList(Model.Providers, "Id", "CorporateName")'>
+                <option selected>--Fornecedor--</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Procurar</button>
+        </div>
+    </form>
+    <div>
         <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Adicionar Produto</a>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Corridor)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Shelf)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Batch)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Validity)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Category)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Quantity)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Value)</th>
-                <th scope="col">Mais Detalhes </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Product product in Model)
-            {
-            <tr>
-                <th scope="row">@product.Name</th>
-                <td>@product.Corridor</td>
-                <td>@product.Shelf</td>
-                <td>@product.Batch</td>
-                <td>@product.Validity</td>
-                <td>@product.Category</td>
-                <td>@product.Quantity</td>
-                <td>R$ @product.Value.ToString("F2")</td>
-                <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
-                        asp-action="Details">Ver</a></td>
-            </tr>
-            }
-        </tbody>
-    </table>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Name)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Corridor)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Shelf)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Batch)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Validity)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Category)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Quantity)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Value)</th>
+            <th scope="col">Mais Detalhes </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product product in Model.Products)
+        {
+        <tr>
+            <th scope="row">@product.Name</th>
+            <td>@product.Corridor</td>
+            <td>@product.Shelf</td>
+            <td>@product.Batch</td>
+            <td>@product.Validity</td>
+            <td>@product.Category</td>
+            <td>@product.Quantity</td>
+            <td>R$ @product.Value.ToString("F2")</td>
+            <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
+                    asp-action="Details">Ver</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

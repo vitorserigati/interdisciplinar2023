@@ -1,4 +1,5 @@
 using Interdisciplinar2023.Data;
+using Interdisciplinar2023.Data.Enum;
 using Interdisciplinar2023.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,26 @@ public class ProductRepository : IProductsRepository
     public async Task<Product?> GetProductAsync(Guid id)
     {
         return await _context.Products.Include(p => p.Provider).FirstOrDefaultAsync(i => i.Id == id);
+    }
+
+    public async Task<IEnumerable<Product?>> GetAllFromProviderAsync(Guid providerId)
+    {
+        return await _context.Products.Include(p => p.Provider).Where(p => p.ProviderId == providerId).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Product?>> GetAllFromCategory(ProductCategory category)
+    {
+        return await _context.Products.Where(p => p.Category == category).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Product?>> GetAllFromProviderAndCategoryAsync(Guid providerId, ProductCategory category)
+    {
+        return await _context.Products.Include(p => p.Provider).Where(p => p.ProviderId == providerId && p.Category == category).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Product?>> GetAllProductsBelowAsync(int amount)
+    {
+        return await _context.Products.Include(p => p.Provider).Where(p => p.Quantity < amount).ToListAsync();
     }
 
     public bool Update(Product prod)

@@ -49,6 +49,8 @@ namespace Interdisciplinar2023.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string? Celphone { get; set; }
 
+        public IEnumerable<Product?> Products { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;

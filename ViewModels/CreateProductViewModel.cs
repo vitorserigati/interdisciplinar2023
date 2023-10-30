@@ -5,8 +5,6 @@ namespace Interdisciplinar2023.ViewModels;
 
 public class CreateProductViewModel
 {
-    public Guid Id { get; set; }
-
     [Required]
     public string? Name { get; set; }
 
@@ -35,13 +33,14 @@ public class CreateProductViewModel
     public int Quantity { get; set; }
 
     public Provider? Provider { get; set; }
+
     [Required]
     public Guid ProviderId { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    public DateTime UpdatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    public IEnumerable<Provider>? ProviderList { get; set; }
+    public IEnumerable<Provider?> ProviderList { get; set; }
 
 }
