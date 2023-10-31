@@ -45,7 +45,7 @@ ViewData["Title"] = "Lista de Produtos";
     <tbody>
         @foreach (Product product in Model.Products)
         {
-        <tr>
+        <tr class="@(product.Quantity < 10 ? "list-group-item-danger" : "")">
             <th scope="row">@product.Name</th>
             <td>@product.Corridor</td>
             <td>@product.Shelf</td>

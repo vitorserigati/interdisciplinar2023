@@ -7,15 +7,37 @@ ViewData["Title"] = "Detalhes do " + @Model.Name;
     <div class="w-50">
         <h1>Detalhes do @Model.Name</h1>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">@Model.Name</li>
-            <li class="list-group-item">R$ @Model.Value.ToString("F2")</li>
-            <li class="list-group-item">@Model.Corridor</li>
-            <li class="list-group-item">@Model.Shelf</li>
-            <li class="list-group-item">@Model.Batch</li>
-            <li class="list-group-item">@Model.Validity</li>
-            <li class="list-group-item">@Model.Description</li>
-            <li class="list-group-item">@Model.Category</li>
-            <li class="list-group-item">@Model.Provider.CorporateName</li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Name):</h4> @Model.Name
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Value):</h4>R$ @Model.Value.ToString("F2")
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Corridor):</h4>@Model.Corridor
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Shelf):</h4>@Model.Shelf
+            </li>
+            <li
+                class='list-group-item d-flex justify-content-between align-items-start @(Model.Quantity < 10 ? "list-group-item-danger" : "") '>
+                <h4>@Html.DisplayNameFor(m => m.Quantity):</h4> @Model.Quantity
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Batch):</h4>@Model.Batch
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Validity):</h4>@Model.Validity
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Description):</h4>@Model.Description
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Category):</h4>@Model.Category
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <h4>@Html.DisplayNameFor(m => m.Provider.CorporateName):</h4>@Model.Provider.CorporateName
+            </li>
             <div class="d-flex flex-row justify-content-around align-items-center my-3">
                 <a asp-action="Edit" asp-controller="Product" asp-route-id="@Model.Id" class="btn btn-primary">
                     Editar

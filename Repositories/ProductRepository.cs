@@ -45,6 +45,9 @@ public class ProductRepository : IProductsRepository
         return await _context.Products.Include(p => p.Provider).Where(p => p.Quantity < amount).ToListAsync();
     }
 
+    public async Task<IEnumerable<Product?>> GetAllNearDate(DateTime dueDate){
+        return await _context.Products.Include(p=> p.Provider).Where(p => p.Validity <= dueDate).ToListAsync();
+    }
     public bool Update(Product prod)
     {
         _context.Update(prod);

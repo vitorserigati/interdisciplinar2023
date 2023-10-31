@@ -1,0 +1,62 @@
+@using Interdisciplinar2023.ViewModels;
+@model EditProviderViewModel
+@{
+ViewData["Title"] = "Editar " + Model.CorporateName;
+}
+
+<form method="post" asp-action="Edit" asp-controller="Provider" asp-route-id="Model.Id">
+    <input type="hidden" asp-for="Id">
+    <div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CorporateName" class="form-label">@Html.DisplayNameFor(i => i.CorporateName)</label>
+        <input asp-for="CorporateName" class="form-control" />
+        <span asp-validation-for='CorporateName' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Document" class="form-label">@Html.DisplayNameFor(i => i.Document)</label>
+        <input asp-for="Document" class="form-control">
+        <span asp-validation-for='Document' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Street" class="form-label">@Html.DisplayNameFor(i => i.Street)</label>
+        <input asp-for="Street" class="form-control">
+        <span asp-validation-for='Street' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Neighborhood" class="form-label">@Html.DisplayNameFor(i => i.Neighborhood)</label>
+        <input asp-for="Neighborhood" class="form-control">
+        <span asp-validation-for='Neighborhood' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="City" class="form-label">@Html.DisplayNameFor(i => i.City)</label>
+        <input asp-for="City" class="form-control">
+        <span asp-validation-for='City' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="State" class="form-label">@Html.DisplayNameFor(i => i.State)</label>
+        <input asp-for="State" class="form-control">
+        <span asp-validation-for='State' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PostalCode">@Html.DisplayNameFor(m => m.PostalCode)</label>
+        <input asp-for="PostalCode" class="form-control">
+        <span asp-validation-for='PostalCode' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">@Html.DisplayNameFor(i => i.Email)</label>
+        <input asp-for="Email" class="form-control">
+        <span asp-validation-for='Email' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label">@Html.DisplayNameFor(i => i.Phone)</label>
+        <input asp-for="Phone" class="form-control">
+        <span asp-validation-for='Phone' class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Celphone" class="form-label">@Html.DisplayNameFor(i => i.Celphone)</label>
+        <input asp-for="Celphone" class="form-control">
+        <span asp-validation-for='Celphone' class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

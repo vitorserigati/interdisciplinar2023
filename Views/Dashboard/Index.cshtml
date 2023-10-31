@@ -1,0 +1,61 @@
+@using Interdisciplinar2023.ViewModels;
+@model DashboardIndexViewModel
+@{
+ViewData["Title"] = "Relatório";
+}
+
+<h1> Relatório </h1>
+<form class="d-flex flex-row align-items-center justify-content-between" asp-controller="Dashboard" asp-action="Index"
+    method="post">
+    <div class="form-group">
+        <label asp-for="SelectedDate"></label>
+        <input asp-for="SelectedDate">
+    </div>
+    <div class="form-group mx-3">
+        <label asp-for="SelectedProviderId"></label>
+        <select asp-for="SelectedProviderId" asp-items='new SelectList(Model.Providers, "Id", "CorporateName")'>
+            <option selected>--Fornecedor--</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Procurar</button>
+    </div>
+</form>
+<div>
+    @if (Model.Products.Any())
+    {
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Name)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Corridor)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Shelf)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Batch)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Validity)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Category)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Quantity)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Products.First().Value)</th>
+                <th scope="col">Mais Detalhes </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product product in Model.Products)
+            {
+            <tr class="@(product.Quantity < 10 ? " list-group-item-danger" : "" )">
+                <th scope="row">@product.Name</th>
+                <td>@product.Corridor</td>
+                <td>@product.Shelf</td>
+                <td>@product.Batch</td>
+                <td>@product.Validity</td>
+                <td>@product.Category</td>
+                <td>@product.Quantity</td>
+                <td>R$ @product.Value.ToString("F2")</td>
+                <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
+                        asp-action="Details">Ver</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>

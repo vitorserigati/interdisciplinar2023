@@ -9,6 +9,8 @@ public interface IProductsRepository : IRepository<Product>
 
     Task<IEnumerable<Product?>> GetAllFromCategory(ProductCategory category);
 
+    Task<IEnumerable<Product?>> GetAllNearDate(DateTime dueDate);
+
     Task<IEnumerable<Product?>> GetAllFromProviderAsync(Guid providerId);
 
     Task<IEnumerable<Product?>> GetAllProductsBelowAsync(int amount);

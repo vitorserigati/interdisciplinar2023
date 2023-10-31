@@ -1,0 +1,60 @@
+@using Interdisciplinar2023.ViewModels;
+@model CreateProviderViewModel
+@{
+ViewData["Title"] = "Criar novo Fornecedor";
+}
+
+<form metho="Post" asp-action="Create" asp-controller="Provider">
+    <div class="form-group mb-2">
+        <label asp-for="CorporateName">@Html.DisplayNameFor(m => m.CorporateName)</label>
+        <input asp-for="CorporateName" class="form-control" placeholder="ex. Nestle">
+        <span asp-validation-for="CorporateName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Document">@Html.DisplayNameFor(m => m.Document)</label>
+        <input asp-for="Document" class="form-control" placeholder="ex. 00.000.000/0000-00">
+        <span asp-validation-for="Document" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Street">@Html.DisplayNameFor(m => m.Street)</label>
+        <input asp-for="Street" class="form-control" placeholder="ex. Av. dos Exemplos">
+        <span asp-validation-for="Street" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Neighborhood">@Html.DisplayNameFor(m => m.Neighborhood)</label>
+        <input asp-for="Neighborhood" class="form-control" placeholder="ex. Bairro dos Lazeres">
+        <span asp-validation-for="Neighborhood" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="City">@Html.DisplayNameFor(m => m.City)</label>
+        <input asp-for="City" class="form-control" placeholder="ex. São Paulo">
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="State">@Html.DisplayNameFor(m => m.State)</label>
+        <input asp-for="State" class="form-control" placeholder="ex. São Paulo">
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="PostalCode">@Html.DisplayNameFor(m => m.PostalCode)</label>
+        <input asp-for="PostalCode" class="form-control" placeholder="ex. 00000-000">
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Email">@Html.DisplayNameFor(m => m.Email)</label>
+        <input asp-for="Email" class="form-control" placeholder="ex. john.doe@teste.com">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Phone">@Html.DisplayNameFor(m => m.Phone)</label>
+        <input asp-for="Phone" class="form-control" placeholder="ex. 55-11-3333-3333">
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Celphone">@Html.DisplayNameFor(m => m.Celphone)</label>
+        <input asp-for="Celphone" class="form-control" placeholder="ex. 55-11-9-9999-9999">
+        <span asp-validation-for="CorporateName" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>
