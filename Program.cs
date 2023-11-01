@@ -1,7 +1,10 @@
 global using Interdisciplinar2023.Interfaces;
+global using Interdisciplinar2023.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Interdisciplinar2023.Repositories;
 using Interdisciplinar2023.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +13,22 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
 
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IProductsRepository, ProductRepository>();
+
 builder.Services.AddDbContext<DataContext>(options =>
         options.UseNpgsql(connectionString));
 
-builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
-builder.Services.AddScoped<IProductsRepository, ProductRepository>();
+builder.Services.AddIdentity<User, IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<DataContext>();
+
+builder.Services.AddMemoryCache();
+
+builder.Services.AddSession();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
+
 
 var app = builder.Build();
 
@@ -35,6 +49,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

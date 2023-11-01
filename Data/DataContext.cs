@@ -1,11 +1,12 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Interdisciplinar2023.Models;
 using Interdisciplinar2023.Data.Enum;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Interdisciplinar2023.Data;
 
-public class DataContext : DbContext
+public class DataContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
@@ -31,7 +32,7 @@ public class DataContext : DbContext
             Celphone = "11933333333",
             CreatedAt = DateTime.Now.ToUniversalTime(),
             UpdatedAt = DateTime.Now.ToUniversalTime()
-                
+
         };
 
         var product = new Product

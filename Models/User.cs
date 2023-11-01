@@ -1,15 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 namespace Interdisciplinar2023.Models;
 
-public class User
+public class User : IdentityUser<Guid>
 {
-    [Key]
-    public Guid Id { get; set; } = new Guid();
+    public string Celphone { get; set; }
 
-    public string? Email { get; set; }
-
-    public string? FirstName { get; set; }
-    
-    public string? LastName { get; set; }
+    public string Phone { get; set; }
 
 }
