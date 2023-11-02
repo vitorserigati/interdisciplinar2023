@@ -19,7 +19,7 @@ public class DashboardController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var products = await _productsRepository.GetAllNearDate(DateTime.UtcNow.AddMonths(1));
+        var products = await _productsRepository.GetAllNearDateAndBelowAmount(DateTime.UtcNow.AddMonths(1), 10);
         var providers = await _providerRepository.GetAllProviders();
         DashboardIndexViewModel nModel = new DashboardIndexViewModel
         {
@@ -34,17 +34,30 @@ public class DashboardController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(DashboardIndexViewModel model)
     {
-        var products = await _productsRepository.GetAllNearDate(model.SelectedDate?.ToUniversalTime() ?? DateTime.UtcNow.AddMonths(1));
-        List<Provider> providers = new List<Provider>();
-        foreach (Product prod in products)
+        if (model.SelectedProviderId != null)
         {
-            providers.Add(await _providerRepository.GetProviderAsync(prod.ProviderId));
+            DateTime selectedDate = model.SelectedDate?.ToUniversalTime() ?? DateTime.UtcNow.AddMonths(1);
+            Guid selectedProviderId = Guid.Parse(model.SelectedProviderId!);
+            var products = await _productsRepository.GetAllNearDateAndBelowAmountFromProvider(selectedDate, 10, selectedProviderId);
+            var providers = await _providerRepository.GetAllProviders();
+
+            model.Providers = providers!;
+            model.Products = products!;
+            model.SelectedDate = selectedDate;
+
+            return View(model);
         }
+        else
+        {
+            DateTime selectedDate = model.SelectedDate?.ToUniversalTime() ?? DateTime.UtcNow.AddMonths(1);
+            var products = await _productsRepository.GetAllNearDateAndBelowAmount(selectedDate, 10);
+            var providers = await _providerRepository.GetAllProviders();
 
-        model.Providers = providers;
-        model.Products = products!;
-
-        return View(model);
+            model.Providers = providers!;
+            model.Products = products!;
+            model.SelectedDate = selectedDate;
+            return View(model);
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

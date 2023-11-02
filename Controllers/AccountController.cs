@@ -78,7 +78,7 @@ public class AccountController : Controller
         var newUser = new User
         {
             Email = inputVM.Email,
-            UserName = inputVM.Email,
+            UserName = inputVM.UserName,
             Celphone = inputVM.Celphone,
             Phone = inputVM.Celphone
         };

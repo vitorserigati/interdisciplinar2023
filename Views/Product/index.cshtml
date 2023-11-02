@@ -64,10 +64,10 @@ ViewData["Title"] = "Lista de Produtos";
             <td>@product.Corridor</td>
             <td>@product.Shelf</td>
             <td>@product.Batch</td>
-            <td class="@(@product.Validity <= DateTime.Now.AddMonths(1) ? " table-danger" : "" )">
+            <td class="@(@product.Validity <= DateTime.Now.AddMonths(1) ? " table-danger text-danger" : "" )">
                 @product.Validity.ToLocalTime()</td>
-            <td>@product.Category</td>
-            <td class="@(product.Quantity < 10 ? " table-warning" : "" )">@product.Quantity</td>
+            <td>@product.Category.Translate()</td>
+            <td class="@(product.Quantity < 10 ? " table-warning text-warning" : "" )">@product.Quantity</td>
             <td>R$ @product.Value.ToString("F2")</td>
             <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
                     asp-action="Details">Ver</a></td>

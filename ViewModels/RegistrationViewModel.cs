@@ -4,6 +4,10 @@ namespace Interdisciplinar2023.ViewModels;
 
 public class RegistrationViewModel
 {
+    [DisplayName("Nome")]
+    [Required(ErrorMessage = "Por favor, digite seu nome")]
+    public string UserName { get; set; }
+
     [DisplayName("E-Mail")]
     [Required(ErrorMessage = "Por favor, digite um e-mail válido!")]
     [DataType(DataType.EmailAddress)]

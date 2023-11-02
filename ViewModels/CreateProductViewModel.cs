@@ -1,37 +1,48 @@
-using System.ComponentModel.DataAnnotations;
-using Interdisciplinar2023.Models;
+using System.ComponentModel;
 using Interdisciplinar2023.Data.Enum;
+using System.ComponentModel.DataAnnotations;
+
 namespace Interdisciplinar2023.ViewModels;
 
 public class CreateProductViewModel
 {
-    [Required]
+    [DisplayName("Nome")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public string? Name { get; set; }
 
-    [Required]
+    [DisplayName("Preço")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public decimal Value { get; set; }
 
-    [Required]
+    [DisplayName("Corredor")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public string? Corridor { get; set; }
 
-    [Required]
+    [DisplayName("Prateleira")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public string? Shelf { get; set; }
 
-    [Required]
+    [DisplayName("Lote")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public string? Batch { get; set; }
 
-    [Required]
+    [DisplayName("Validade")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public DateTime Validity { get; set; } = DateTime.UtcNow;
 
-    [Required]
+    [DisplayName("Categoria")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public ProductCategory Category { get; set; }
 
-    [Required]
+    [DisplayName("Descrição")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public string? Description { get; set; }
 
-    [Required]
+    [DisplayName("Quantidade")]
+    [Required(ErrorMessage = "Campo Obrigatório")]
     public int Quantity { get; set; }
 
+    [DisplayName("Fornecedor")]
     public Provider? Provider { get; set; }
 
     [Required]

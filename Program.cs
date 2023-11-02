@@ -1,5 +1,6 @@
 global using Interdisciplinar2023.Interfaces;
 global using Interdisciplinar2023.Models;
+global using Interdisciplinar2023.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Interdisciplinar2023.Repositories;
@@ -54,6 +55,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
+
+app.Seed();
 
 app.Run();
 // "DefaultConnection": "User Id=postgres;Password=docker;Host=localhost;Port=5432;Database=Interdisciplinar2023;Pooling=true;IncludeErrorDetail=true" 

@@ -30,7 +30,7 @@ ViewData["Title"] = "Relatório";
     <div class="form-group mx-3">
         <label asp-for="SelectedProviderId"></label>
         <select asp-for="SelectedProviderId" asp-items='new SelectList(Model.Providers, "Id", "CorporateName")'>
-            <option selected>--Fornecedor--</option>
+            <option selected value="@(null)">--Fornecedor--</option>
         </select>
     </div>
     <div>
@@ -63,11 +63,11 @@ ViewData["Title"] = "Relatório";
                 <td>@product.Corridor</td>
                 <td>@product.Shelf</td>
                 <td>@product.Batch</td>
-                <td class="@(@product.Validity <= DateTime.Now.AddMonths(1) ? " table-danger" : "" )">
+                <td class="@(@product.Validity <= DateTime.Now.AddMonths(1) ? "table-danger text-danger" : "" )">
                     @product.Validity
                 </td>
                 <td>@product.Category</td>
-                <td class="@(product.Quantity < 10 ? " table-warning" : "" )">
+                <td class="@(product.Quantity < 10 ? " table-warning text-warning" : "" )">
                     @product.Quantity
                 </td>
                 <td>R$ @product.Value.ToString("F2")</td>
