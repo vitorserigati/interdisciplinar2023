@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Interdisciplinar2023.Data;
 using Microsoft.AspNetCore.Identity;
 using Interdisciplinar2023.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Interdisciplinar2023.Controllers;
 
@@ -32,18 +33,18 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginVM)
     {
-        if(!ModelState.IsValid) return View(loginVM);
+        if (!ModelState.IsValid) return View(loginVM);
         var user = await _userManager.FindByEmailAsync(loginVM.Email);
 
         // User Found check Password
-        if(user != null)
+        if (user != null)
         {
             var passwordCheck = await _userManager.CheckPasswordAsync(user, loginVM.Password);
             if (passwordCheck)
             {
                 // Password Correct, sign in
                 var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Product");
                 }
@@ -59,7 +60,40 @@ public class AccountController : Controller
 
     public IActionResult Register()
     {
-        return View();
+        var response = new RegistrationViewModel();
+        return View(response);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegistrationViewModel inputVM)
+    {
+        if (!ModelState.IsValid) return View(inputVM);
+
+        var user = await _userManager.FindByEmailAsync(inputVM.Email);
+        if (user != null)
+        {
+            TempData["Error"] = "Este e-mail Já está em uso";
+        }
+
+        var newUser = new User
+        {
+            Email = inputVM.Email,
+            UserName = inputVM.Email,
+            Celphone = inputVM.Celphone,
+            Phone = inputVM.Celphone
+        };
+
+        var newUserResponse = await _userManager.CreateAsync(newUser, inputVM.Password);
+
+        return RedirectToAction("Login");
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Signout()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Login");
     }
 
 

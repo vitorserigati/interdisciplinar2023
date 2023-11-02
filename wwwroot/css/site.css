@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.legenda{
+  width: 20px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin: 3px;
+}

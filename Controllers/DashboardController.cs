@@ -1,10 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Interdisciplinar2023.Models;
 using Interdisciplinar2023.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Interdisciplinar2023.Controllers;
 
+[Authorize]
 public class DashboardController : Controller
 {
     private readonly IProviderRepository _providerRepository;

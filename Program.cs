@@ -17,10 +17,13 @@ builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IProductsRepository, ProductRepository>();
 
 builder.Services.AddDbContext<DataContext>(options =>
-        options.UseNpgsql(connectionString));
+        options.UseSqlite(connectionString));
 
 builder.Services.AddIdentity<User, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<DataContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+        { options.User.RequireUniqueEmail = true; });
 
 builder.Services.AddMemoryCache();
 
@@ -45,6 +48,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -52,3 +56,4 @@ app.MapControllerRoute(
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
+// "DefaultConnection": "User Id=postgres;Password=docker;Host=localhost;Port=5432;Database=Interdisciplinar2023;Pooling=true;IncludeErrorDetail=true" 

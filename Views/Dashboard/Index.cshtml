@@ -3,9 +3,25 @@
 @{
 ViewData["Title"] = "Relatório";
 }
+<div class="my-2">
 
-<h1> Relatório </h1>
-<form class="d-flex flex-row align-items-center justify-content-between" asp-controller="Dashboard" asp-action="Index"
+    <h1> Relatório </h1>
+
+    <div class="d-flex">
+        <div class="d-flex gap-2 mx-3">
+            <div class="legenda bg-warning">
+            </div>
+            <label>Quantidade de itens abaixo de 10</label>
+        </div>
+        <div class="d-flex gap-2 mx-3">
+            <div class="legenda bg-danger">
+            </div>
+            <label>Validade do produto próxima</label>
+        </div>
+    </div>
+</div>
+
+<form class="my-2 d-flex flex-row align-items-center justify-content-between" asp-controller="Dashboard" asp-action="Index"
     method="post">
     <div class="form-group">
         <label asp-for="SelectedDate"></label>
@@ -42,14 +58,18 @@ ViewData["Title"] = "Relatório";
         <tbody>
             @foreach (Product product in Model.Products)
             {
-            <tr class="@(product.Quantity < 10 ? " list-group-item-danger" : "" )">
+            <tr>
                 <th scope="row">@product.Name</th>
                 <td>@product.Corridor</td>
                 <td>@product.Shelf</td>
                 <td>@product.Batch</td>
-                <td>@product.Validity</td>
+                <td class="@(@product.Validity <= DateTime.Now.AddMonths(1) ? " table-danger" : "" )">
+                    @product.Validity
+                </td>
                 <td>@product.Category</td>
-                <td>@product.Quantity</td>
+                <td class="@(product.Quantity < 10 ? " table-warning" : "" )">
+                    @product.Quantity
+                </td>
                 <td>R$ @product.Value.ToString("F2")</td>
                 <td class="px-5"><a class="btn-secondary btn" asp-route-id="@product.Id" asp-controller="Product"
                         asp-action="Details">Ver</a></td>

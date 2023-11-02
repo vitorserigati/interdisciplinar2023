@@ -21,7 +21,7 @@ namespace Interdisciplinar2023.Data.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("b60cb376-d0dc-45e3-a437-9ee5c46c76ab"));
 
-            migrationBuilder.Sql("""ALTER TABLE "Products" ALTER COLUMN "Category" TYPE integer USING "Category"::integer""");
+            //migrationBuilder.Sql("""ALTER TABLE "Products" ALTER COLUMN "Category" TYPE integer USING "Category"::integer""");
 
             migrationBuilder.InsertData(
                 table: "Providers",
