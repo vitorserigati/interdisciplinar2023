@@ -1,5 +1,4 @@
 using Interdisciplinar2023.Data;
-using Interdisciplinar2023.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Interdisciplinar2023.Repositories;
