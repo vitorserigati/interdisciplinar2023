@@ -28,6 +28,7 @@ public class CreateProductViewModel
 
     [DisplayName("Validade")]
     [Required(ErrorMessage = "Campo Obrigatório")]
+    [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy, HH:mm}", ApplyFormatInEditMode = true)]
     public DateTime Validity { get; set; } = DateTime.UtcNow;
 
     [DisplayName("Categoria")]

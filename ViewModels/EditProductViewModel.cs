@@ -28,7 +28,7 @@ public class EditProductViewModel
 
     [Required]
     [Display(Name = "Validade")]
-    [DisplayFormat(DataFormatString = "dd/MM/yyyy HH:mm")]
+    [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy, HH:mm}", ApplyFormatInEditMode = true)]
     public DateTime Validity { get; set; }
 
     [Required]

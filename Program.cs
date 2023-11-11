@@ -59,4 +59,3 @@ app.MapControllerRoute(
 app.Seed();
 
 app.Run();
-// "DefaultConnection": "User Id=postgres;Password=docker;Host=localhost;Port=5432;Database=Interdisciplinar2023;Pooling=true;IncludeErrorDetail=true" 
